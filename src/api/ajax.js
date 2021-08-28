@@ -10,13 +10,13 @@ const instance = axios.create({
 
 export const AuthAPI = {
    getMyUserInfo() {
-      return instance.get('get_user_info/').then(res => res.status === 200 && res.data, err => null);
+      return instance.get('get_user_info/').then(res => res.status === 200 && res, err => null);
    },
 
    login(body) {
       return instance.post('login/', body, {
          headers: {
-            'X-CSRFToken': Cookie.get('csrftoken'),
+            'X-CSRFToken': window.CSRF_TOKEN,
          }
       }).then(res => res.status, err => err.response ? err.response.status : 500);
    },
@@ -28,7 +28,7 @@ export const AuthAPI = {
    registration(body) {
       return instance.post('registration/', body, {
          headers: {
-            'X-CSRFToken': Cookie.get('csrftoken'),
+            'X-CSRFToken': window.CSRF_TOKEN,
          }
       }).then(res => res.status, err => err.response ? err.response.status : 500);
    },
@@ -49,7 +49,7 @@ export const UserDataAPI = {
    createGroup(body) {
       return instance.post('create_group/', body, {
          headers: {
-            'X-CSRFToken': Cookie.get('csrftoken'),
+            'X-CSRFToken': window.CSRF_TOKEN,
          }
       }).then(res => res.status === 201 && res.data, err => null);
    },
@@ -57,7 +57,7 @@ export const UserDataAPI = {
    createTask(body) {
       return instance.post('create_task/', body, {
          headers: {
-            'X-CSRFToken': Cookie.get('csrftoken'),
+            'X-CSRFToken': window.CSRF_TOKEN,
          }
       }).then(res => res.status === 201 && res.data, err => null);
    },
@@ -68,7 +68,7 @@ export const UserDataAPI = {
       
       return instance.post('update_photo/', formdata, {
          headers: {
-            'X-CSRFToken': Cookie.get('csrftoken'),
+            'X-CSRFToken': window.CSRF_TOKEN,
          }
       }).then(res => res.status === 201 && res.data, err => null);
    },
@@ -76,7 +76,7 @@ export const UserDataAPI = {
    updateTask(body) {
       return instance.post('update_task/', body, {
          headers: {
-            'X-CSRFToken': Cookie.get('csrftoken'),
+            'X-CSRFToken': window.CSRF_TOKEN,
          }
       }).then(res => res.status === 201 ? res.data : res.status, err => null);
    },
@@ -84,7 +84,7 @@ export const UserDataAPI = {
    updateGroup(body) {
       return instance.post('update_group/', body, {
          headers: {
-            'X-CSRFToken': Cookie.get('csrftoken'),
+            'X-CSRFToken': window.CSRF_TOKEN,
          }
       }).then(res => res.status === 201 ? res.data : res.status, err => null);
    }

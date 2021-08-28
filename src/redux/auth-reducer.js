@@ -79,7 +79,8 @@ const updatePhotoUrl = (photoUrl) =>
 // THUNKS here:
 export const getUserData = () => async (dispatch) => {
    dispatch(toggleIsFetchingUserData(true));
-   const data = await AuthAPI.getMyUserInfo();
+   const { data, headers } = await AuthAPI.getMyUserInfo();
+   window.CSRF_TOKEN = headers['X-Csrftoken'];
    if (data) {
       dispatch(setUserData(data.username, data.photo));
       dispatch(toggleIsAuth(true));
