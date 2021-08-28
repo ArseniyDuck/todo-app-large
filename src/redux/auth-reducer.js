@@ -27,7 +27,7 @@ const authReducer = (state = initialState, action) => {
             ...state,
             user: {
                username: action.username,
-               photo: action.photoUrl ? `http://localhost:8000${action.photoUrl}`: null
+               photo: action.photoUrl ? action.photoUrl: null
             },
          };
       case TOGGLE_IS_FETCHING_USER_DATA:
