@@ -10,7 +10,7 @@ const instance = axios.create({
 
 export const AuthAPI = {
    getMyUserInfo() {
-      return instance.get('get_user_info/').then(res => res.status === 200 && res, err => null);
+      return instance.get('get_user_info/').then(res => res.status === 200 && res, err => err.response);
    },
 
    login(body) {
