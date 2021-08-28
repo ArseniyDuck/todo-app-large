@@ -82,8 +82,7 @@ export const getUserData = () => async (dispatch) => {
    const response = await AuthAPI.getMyUserInfo();
    const data = response.data;
    const headers = response.headers;
-   console.log(headers)
-   window.CSRF_TOKEN = headers['X-Csrftoken'];
+   window.CSRF_TOKEN = headers['x-csrftoken'];
    if (data) {
       dispatch(setUserData(data.username, data.photo));
       dispatch(toggleIsAuth(true));
